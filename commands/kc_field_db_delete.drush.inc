@@ -23,8 +23,7 @@ function drush_kc_field_db_delete($fieldname) {
 
   // Confirm before deleting.
   if (!drush_confirm(dt('This will obliterate the field @name and all its data. Continue?', $args))) {
-    drush_print(dt('Cancelled.'));
-    return;
+    return drush_user_abort();
   }
 
   // Mark the field as deleted and let other modules first invoke their hooks.
@@ -36,7 +35,6 @@ function drush_kc_field_db_delete($fieldname) {
   if (db_drop_table("field_data_{$fieldname}")) {
     drush_log(dt("Dropped table field_data_@name", $args), 'success');
   }
-
   if (db_drop_table("field_revision_{$fieldname}")) {
     drush_log(dt("Dropped table field_revision_@name", $args), 'success');
   }
@@ -44,5 +42,5 @@ function drush_kc_field_db_delete($fieldname) {
   // Delete records from config and instance tables
   db_delete('field_config')->condition('field_name', $fieldname)->execute();
   db_delete('field_config_instance')->condition('field_name', $fieldname)->execute();
-  drush_log(dt("Delete confif references."), 'success');
+  drush_log(dt("Delete config references."), 'success');
 }
