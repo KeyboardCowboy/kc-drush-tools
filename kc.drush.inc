@@ -20,6 +20,9 @@ function kc_drush_command() {
     'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
   );
 
+  /**
+   * See devel_reinstall
+   *
   $items['pm-reinstall'] = array(
     'description' => 'Disable, uninstall and reinstall a module.',
     'arguments' => array(
@@ -32,6 +35,7 @@ function kc_drush_command() {
     'aliases' => array('dui'),
     //'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_DATABASE,
   );
+   */
 
   return $items;
 }
