@@ -30,6 +30,11 @@ function drush_kc_flush() {
     $default_options['config'] = $config;
   }
 
+  drush_shell_exec('git pull');
+  foreach (drush_shell_exec_output() as $msg) {
+    drush_print($msg);
+  }
+
   foreach ($commands as $command) {
     $command += array('alias' => '@self', 'arguments' => array(), 'options' => array());
     $command['options'] += $default_options;
@@ -41,5 +46,5 @@ function drush_kc_flush() {
   }
 
   // Success!
-  drush_log(dt('Build completed.'), 'success');
+  drush_log(dt('Flush completed.'), 'success');
 }
