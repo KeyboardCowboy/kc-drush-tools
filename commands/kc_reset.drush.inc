@@ -6,7 +6,7 @@
 /**
  * Command callback.
  */
-function drush_kc_flush() {
+function drush_kc_reset() {
   $commands[] = array(
     'command' => 'updatedb',
     'options' => array('yes' => TRUE),
@@ -46,5 +46,5 @@ function drush_kc_flush() {
   }
 
   // Success!
-  drush_log(dt('Flush completed.'), 'success');
+  drush_log(dt('Reset completed.'), 'success');
 }

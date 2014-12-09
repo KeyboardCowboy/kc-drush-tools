@@ -37,9 +37,9 @@ function kc_drush_command() {
   );
    */
 
-  $items['flush'] = array(
+  $items['reset'] = array(
     'description' => 'Batch command to run DB updates, revert features, clear caches.',
-    'bootstrap' => DRUSH_BOOTSTRAP_DRUSH,
+    'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
   );
 
   return $items;
