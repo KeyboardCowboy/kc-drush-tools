@@ -6,22 +6,11 @@
 /**
  * Command callback.
  */
-function drush_kc_reset() {
+function drush_kc_site_on() {
   $commands[] = array(
-    'command' => 'rr',
-    'options' => array('yes' => TRUE),
-  );
-  $commands[] = array(
-    'command' => 'updatedb',
-    'options' => array('yes' => TRUE),
-  );
-  $commands[] = array(
-    'command' => 'cache-clear',
-    'arguments' => array('drush'),
-  );
-  $commands[] = array(
-    'command' => 'features-revert-all',
-    'options' => array('yes' => TRUE),
+    'command' => 'vset',
+    'arguments' => array('maintenance_mode', 0),
+    'options' => array('exact'),
   );
   $commands[] = array(
     'command' => 'cache-clear',
@@ -34,21 +23,16 @@ function drush_kc_reset() {
     $default_options['config'] = $config;
   }
 
-  drush_shell_exec('git pull');
-  foreach (drush_shell_exec_output() as $msg) {
-    drush_print($msg);
-  }
-
   foreach ($commands as $command) {
     $command += array('alias' => '@self', 'arguments' => array(), 'options' => array());
     $command['options'] += $default_options;
 
     drush_invoke_process($command['alias'], $command['command'], $command['arguments'], $command['options']);
     if (drush_get_error() != DRUSH_SUCCESS) {
-      return drush_set_error('FLUSH_FAILED', dt('Reset failed on drush @command.', array('@command' => $command['command'])));
+      return drush_set_error('FLUSH_FAILED', dt('Failure on drush @command.', array('@command' => $command['command'])));
     }
   }
 
   // Success!
-  drush_log(dt('Reset completed.'), 'success');
+  drush_log(dt('Site is back online.'), 'success');
 }

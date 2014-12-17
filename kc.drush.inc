@@ -20,26 +20,20 @@ function kc_drush_command() {
     'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
   );
 
-  /**
-   * See devel_reinstall
-   *
-  $items['pm-reinstall'] = array(
-    'description' => 'Disable, uninstall and reinstall a module.',
-    'arguments' => array(
-      'module-name' => 'The machine name of the module to reinstall.',
-    ),
-    'required-arguments' => TRUE,
-    'examples' => array(
-      'drush pm-reinstall my_module' => 'Disables, uninstalled and reinstalls my_module.',
-    ),
-    'aliases' => array('dui'),
-    //'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_DATABASE,
-  );
-   */
-
   $items['reset'] = array(
     'description' => 'Batch command to run DB updates, revert features, clear caches.',
     'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
+  );
+
+  $items['site-on'] = array(
+    'description' => 'Take a site out of maintenance mode and clear the cache.',
+    'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
+    'aliases' => array('on'),
+  );
+  $items['site-off'] = array(
+    'description' => 'Put a site into maintenance mode and clear the cache.',
+    'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
+    'aliases' => array('off'),
   );
 
   return $items;
