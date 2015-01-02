@@ -25,6 +25,16 @@ function kc_drush_command() {
     'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
   );
 
+  $items['sync-to-local'] = array(
+    'description' => 'Sync a DB and run the necessary commands to prep a local environment.',
+    'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
+    'arguments' => array(
+      'source-alias' => 'The source alias to fetch the DB from.',
+    ),
+    'required-arguments' => TRUE,
+    'aliases' => array('stl'),
+  );
+
   $items['site-on'] = array(
     'description' => 'Take a site out of maintenance mode and clear the cache.',
     'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
@@ -34,6 +44,15 @@ function kc_drush_command() {
     'description' => 'Put a site into maintenance mode and clear the cache.',
     'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
     'aliases' => array('off'),
+  );
+
+  $items['rerun-update'] = array(
+    'description' => 'Rerun the latest update for a module.',
+    'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
+    'arguments' => array(
+      'module' => 'The module to rerun.',
+    ),
+    'required-arguments' => TRUE,
   );
 
   return $items;
