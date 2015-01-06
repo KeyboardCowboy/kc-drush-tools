@@ -16,6 +16,7 @@ function drush_kc_sync_to_local($source) {
       'create-db' => TRUE,
       'notify' => TRUE,
       'sanitize' => TRUE,
+      'sanitize-email' => 'no',
     ),
   );
 
