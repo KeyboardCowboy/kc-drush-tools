@@ -55,5 +55,29 @@ function kc_drush_command() {
     'required-arguments' => TRUE,
   );
 
+  $items['compare-schema'] = array(
+    'description' => 'Compare the modules enabled and their versions between two sites.',
+    'bootstrap' => DRUSH_BOOTSTRAP_DRUSH,
+    'arguments' => array(
+      'site-1' => 'A site alias.',
+      'site-2' => 'Another site alias.',
+    ),
+    'required-arguments' => TRUE,
+    'options' => array(
+      'status' => 'Filter by module status. (enabled or disabled)',
+      'diff' => 'Only return modules where the schema differs between sites.',
+    ),
+    'examples' => array(
+      'drush compare-schema @site.dev @site.stage' => 'Show the differences between the modules enabled and their versions.',
+    ),
+    'aliases' => array('cs'),
+    'outputformat' => array(
+      'default' => 'table',
+      'pipe-format' => 'list',
+      'field-labels' => array('name' => 'Module', 'a1' => 'Alias 1', 'a2' => 'Alias 2'),
+      'output-data-type' => 'format-table',
+    ),
+  );
+
   return $items;
 }
