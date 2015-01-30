@@ -70,7 +70,7 @@ function kc_drush_command() {
     'examples' => array(
       'drush compare-schema @site.dev @site.stage' => 'Show the differences between the modules enabled and their versions.',
     ),
-    'aliases' => array('cs'),
+    'aliases' => array('compsch'),
     'outputformat' => array(
       'default' => 'table',
       'pipe-format' => 'list',
