@@ -20,21 +20,6 @@ function kc_drush_command() {
     'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
   );
 
-  $items['reset'] = array(
-    'description' => 'Batch command to run DB updates, revert features, clear caches.',
-    'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
-  );
-
-  $items['sync-to-local'] = array(
-    'description' => 'Sync a DB and run the necessary commands to prep a local environment.',
-    'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
-    'arguments' => array(
-      'source-alias' => 'The source alias to fetch the DB from.',
-    ),
-    'required-arguments' => TRUE,
-    'aliases' => array('stl'),
-  );
-
   $items['site-on'] = array(
     'description' => 'Take a site out of maintenance mode and clear the cache.',
     'bootstrap' => DRUSH_BOOTSTRAP_DRUPAL_FULL,
